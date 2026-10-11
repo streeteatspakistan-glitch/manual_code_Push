@@ -1,0 +1,619 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Dental Clinic Website</title>
+<meta name="description" content="Personalized dental care: checkups, cleaning, whitening, crowns and braces. Request an appointment online with [Dental Clinic Name] in [City, Country].">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap">
+<style>
+/* Layout concept: calm, airy single page; asymmetric hero with a photo panel, rounded cards on ivory bands, one teal booking block as the visual anchor. */
+:root{
+  --bg:#fbf9f4;          /* warm white */
+  --surface:#ffffff;
+  --ivory:#f3efe4;       /* soft ivory band */
+  --ink:#1f2f2e;         /* teal-biased near black */
+  --muted:#53665f;
+  --line:#e2ddd0;
+  --teal:#2f6f6b;        /* muted teal */
+  --teal-ink:#ffffff;
+  --teal-deep:#245955;
+  --sage:#dfe8dc;
+  --sky:#e3eef3;
+  --focus:#1d5fa8;
+  --err:#a63a2e;
+  --ok:#2d6a45;
+  --shadow:0 1px 2px rgba(31,47,46,.05),0 8px 24px rgba(31,47,46,.06);
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121b1a;--surface:#1a2625;--ivory:#16211f;--ink:#e9efec;--muted:#a5b5af;--line:#2b3b38;
+  --teal:#6fb5ae;--teal-ink:#0f1f1d;--teal-deep:#8cc8c1;--sage:#22322e;--sky:#1d2d33;--focus:#7db4f0;--err:#f08c7e;--ok:#7fcf9f;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121b1a;--surface:#1a2625;--ivory:#16211f;--ink:#e9efec;--muted:#a5b5af;--line:#2b3b38;
+  --teal:#6fb5ae;--teal-ink:#0f1f1d;--teal-deep:#8cc8c1;--sage:#22322e;--sky:#1d2d33;--focus:#7db4f0;--err:#f08c7e;--ok:#7fcf9f;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:5.5rem}
+body{background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--sans);padding-inline:0}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.12;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:clamp(2.4rem,5.4vw,4rem)}
+h2{font-size:clamp(1.9rem,3.6vw,2.7rem)}
+h3{font-size:1.45rem}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:6px}
+.wrap{max-width:72rem;margin-inline:auto;padding-inline:max(1rem,4vw)}
+.eyebrow{font:600 .78rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--teal-deep)}
+.lede{color:var(--muted);max-width:60ch}
+section{padding-block:clamp(3.5rem,8vw,6.5rem)}
+.band{background:var(--ivory)}
+.sec-head{display:grid;gap:.9rem;margin-bottom:2.6rem;max-width:44rem}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:3rem;padding:.7rem 1.5rem;border-radius:999px;font:600 1rem var(--sans);text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:background .15s,border-color .15s}
+.btn-primary{background:var(--teal);color:var(--teal-ink)}
+.btn-primary:hover{background:var(--teal-deep)}
+.btn-ghost{border-color:var(--teal);color:var(--teal-deep);background:transparent}
+.btn-ghost:hover{background:var(--sage)}
+
+/* header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:4.5rem}
+.logo{display:flex;align-items:center;gap:.65rem;text-decoration:none;font:500 1.3rem var(--serif)}
+.logo svg{width:2rem;height:2rem;flex:none}
+.logo small{display:block;font:500 .68rem var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.links{display:flex;align-items:center;gap:1.8rem;list-style:none;margin:0;padding:0}
+.links a{text-decoration:none;font-weight:500;font-size:.98rem;color:var(--muted)}
+.links a:hover{color:var(--ink)}
+.nav .btn{min-height:2.6rem;padding:.45rem 1.2rem;font-size:.95rem}
+.menu-btn{display:none;background:none;border:1.5px solid var(--line);color:var(--ink);border-radius:12px;width:2.8rem;height:2.8rem;cursor:pointer;align-items:center;justify-content:center}
+.menu-btn svg{width:1.4rem;height:1.4rem}
+.mobile-menu{display:none;border-top:1px solid var(--line);padding-block:1rem 1.4rem}
+.mobile-menu ul{list-style:none;margin:0 0 1rem;padding:0;display:grid}
+.mobile-menu a.l{display:block;padding:.8rem 0;text-decoration:none;font-weight:500;border-bottom:1px solid var(--line)}
+.mobile-menu.open{display:block}
+
+/* hero */
+.hero{padding-block:clamp(2.5rem,6vw,5rem)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.hero-copy{display:grid;gap:1.5rem;min-width:0}
+.hero h1 em{font-style:italic;color:var(--teal-deep)}
+.cta-row{display:flex;flex-wrap:wrap;gap:.8rem}
+.trust{display:flex;align-items:center;gap:.7rem;color:var(--muted);font-weight:500}
+.trust i{display:block;width:2.2rem;height:2px;background:var(--teal)}
+.photo{position:relative;border-radius:28px;overflow:hidden;background:linear-gradient(155deg,var(--sky),var(--sage));box-shadow:var(--shadow);min-width:0}
+.photo.tall{aspect-ratio:4/4.6}
+.photo.wide{aspect-ratio:5/4}
+.photo svg.art{position:absolute;inset:0;width:100%;height:100%}
+.ph-tag{position:absolute;left:1rem;bottom:1rem;right:1rem;background:color-mix(in srgb,var(--surface) 90%,transparent);border-radius:14px;padding:.6rem .9rem;font-size:.85rem;color:var(--muted);line-height:1.4}
+.ph-tag b{color:var(--ink);font-weight:600}
+
+/* services */
+.cards4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:1.7rem 1.5rem;display:flex;flex-direction:column;gap:1rem;box-shadow:var(--shadow);min-width:0}
+.ico{width:3.2rem;height:3.2rem;border-radius:16px;background:var(--sage);display:grid;place-items:center;color:var(--teal-deep)}
+.ico svg{width:1.7rem;height:1.7rem;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.card p{color:var(--muted);font-size:.98rem}
+.card ul{margin:0;padding:0;list-style:none;display:grid;gap:.35rem;font-size:.95rem}
+.card li{display:flex;gap:.55rem;align-items:flex-start}
+.card li::before{content:"";flex:none;width:.45rem;height:.45rem;border-radius:50%;background:var(--teal);margin-top:.6rem}
+.more{margin-top:auto;font-weight:600;color:var(--teal-deep);text-decoration:none;display:inline-flex;gap:.4rem;align-items:center}
+.more:hover{text-decoration:underline}
+
+/* about */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.split>*{min-width:0}
+.copy{display:grid;gap:1.2rem}
+.note{border:1.5px dashed var(--teal);border-radius:16px;padding:1rem 1.2rem;color:var(--muted);font-size:.95rem;background:color-mix(in srgb,var(--sage) 45%,transparent)}
+.note b{color:var(--ink)}
+
+/* team */
+.team{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.person{background:var(--surface);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow);min-width:0}
+.avatar{aspect-ratio:4/3.2;background:linear-gradient(160deg,var(--sky),var(--sage));display:grid;place-items:center}
+.avatar svg{width:42%;height:auto;color:var(--teal);opacity:.55}
+.person .body{padding:1.3rem 1.4rem 1.6rem;display:grid;gap:.5rem}
+.person dl{margin:.4rem 0 0;display:grid;gap:.5rem;font-size:.93rem}
+.person dt{font:600 .72rem var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--teal-deep)}
+.person dd{margin:0;color:var(--muted)}
+.ph{color:var(--muted);font-style:italic}
+
+/* testimonials */
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.quote{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:1.6rem;display:grid;gap:1rem;align-content:start;min-width:0}
+.stars{display:flex;gap:.15rem;color:var(--teal)}
+.stars svg{width:1.1rem;height:1.1rem;fill:currentColor}
+.quote blockquote{margin:0;font:400 1.15rem/1.55 var(--serif);color:var(--ink)}
+.quote cite{font-style:normal;font-size:.9rem;color:var(--muted)}
+.badge{justify-self:start;font:600 .72rem var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:.3rem .65rem;border-radius:999px;background:var(--sky);color:var(--muted)}
+
+/* why */
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:2.2rem 2rem}
+.why div{display:grid;gap:.7rem;align-content:start;min-width:0}
+.why p{color:var(--muted);font-size:.98rem}
+
+/* booking */
+.book{background:var(--teal);color:var(--teal-ink);border-radius:32px;padding:clamp(1.6rem,5vw,3.6rem);display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(2rem,4vw,3.5rem);align-items:start}
+.book>*{min-width:0}
+.book h2{color:var(--teal-ink)}
+.book .lede,.book .eyebrow{color:color-mix(in srgb,var(--teal-ink) 82%,transparent)}
+.book .copy{gap:1rem}
+.demo{display:inline-block;justify-self:start;font:600 .78rem var(--sans);letter-spacing:.08em;text-transform:uppercase;border:1.5px solid currentColor;border-radius:999px;padding:.35rem .8rem}
+form.panel{background:var(--surface);color:var(--ink);border-radius:22px;padding:clamp(1.2rem,3vw,2rem);display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+.field{display:grid;gap:.4rem;min-width:0}
+.field.full{grid-column:1/-1}
+label{font-weight:600;font-size:.92rem}
+label .req{color:var(--err)}
+label .opt{font-weight:400;color:var(--muted)}
+input,select,textarea{width:100%;font:400 1rem var(--sans);color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:.75rem .9rem;min-height:3rem}
+textarea{min-height:6rem;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:3px solid var(--focus);outline-offset:1px;border-color:var(--focus)}
+.field.bad input,.field.bad select{border-color:var(--err)}
+.err{color:var(--err);font-size:.86rem;min-height:0}
+.err:empty{display:none}
+form .btn-primary{width:100%}
+.status{grid-column:1/-1;border-radius:14px;padding:.9rem 1.1rem;font-size:.95rem}
+.status.ok{background:color-mix(in srgb,var(--ok) 14%,var(--surface));border:1px solid var(--ok);color:var(--ink)}
+.status.fail{background:color-mix(in srgb,var(--err) 12%,var(--surface));border:1px solid var(--err)}
+
+/* faq */
+.faq{max-width:50rem;display:grid;gap:.8rem}
+details{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:0 1.3rem}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.15rem 0;font:500 1.2rem var(--serif)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:400 1.6rem/1 var(--sans);color:var(--teal-deep);flex:none}
+details[open] summary::after{content:"\2212"}
+details p{color:var(--muted);padding-bottom:1.2rem;max-width:62ch}
+
+/* contact & footer */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,4vw,3rem);align-items:stretch}
+.contact>*{min-width:0}
+.info{display:grid;gap:1.4rem;align-content:start}
+.info dl{margin:0;display:grid;gap:1.1rem}
+.info dt{font:600 .74rem var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.2rem}
+.info dd{margin:0;color:var(--muted)}
+.map{border-radius:24px;border:1px solid var(--line);min-height:20rem;background:
+  linear-gradient(var(--line) 1px,transparent 1px) 0 0/48px 48px,
+  linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/48px 48px,var(--sky);display:grid;place-items:center;text-align:center;padding:1.5rem;color:var(--muted)}
+.map div{background:var(--surface);padding:1rem 1.3rem;border-radius:16px;max-width:22rem;box-shadow:var(--shadow)}
+.final{text-align:center;display:grid;gap:1.3rem;justify-items:center}
+footer{background:var(--ivory);border-top:1px solid var(--line);padding-block:3rem 2rem;font-size:.95rem;color:var(--muted)}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2rem}
+.foot>*{min-width:0}
+.foot h3{font:600 .76rem var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink);margin-bottom:.8rem}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:.45rem}
+.foot a{text-decoration:none}.foot a:hover{text-decoration:underline}
+.legal{margin-top:2rem;padding-top:1.4rem;border-top:1px solid var(--line);display:grid;gap:.8rem}
+.legal details{background:transparent;border-radius:12px}
+.legal summary{font:600 .95rem var(--sans);padding:.8rem 0}
+.legal details p{padding-bottom:1rem}
+
+@media (max-width:62rem){
+  .cards4{grid-template-columns:repeat(2,1fr)}
+  .team,.quotes,.why{grid-template-columns:repeat(2,1fr)}
+  .book{grid-template-columns:1fr}
+}
+@media (max-width:52rem){
+  .links,.nav>.btn{display:none}
+  .menu-btn{display:inline-flex}
+  .hero-grid,.split,.contact{grid-template-columns:1fr}
+  .photo.tall{aspect-ratio:4/3.4}
+  .foot{grid-template-columns:1fr 1fr}.foot>:first-child{grid-column:1/-1}
+}
+@media (max-width:40rem){
+  .cards4,.team,.quotes,.why{grid-template-columns:1fr}
+  form.panel{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr}
+  .cta-row .btn{flex:1 1 100%}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <nav class="nav" aria-label="Main">
+      <a class="logo" href="#home" aria-label="[Dental Clinic Name], home">
+        <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect width="32" height="32" rx="10" fill="var(--teal)"/><path d="M9.5 11.2c0-2 1.6-3.2 3.4-3.2 1.2 0 2 .5 3.1.5s1.9-.5 3.1-.5c1.8 0 3.4 1.2 3.4 3.2 0 1.5-.5 2.5-.9 4-.5 1.9-.6 4.6-1.3 6.5-.3.9-1.1 1.4-1.8 1.4-.8 0-1.3-.6-1.6-1.6-.3-1.2-.5-2.6-.9-2.6s-.6 1.400-.9 2.600c-.3 1-.8 1.600-1.600 1.600-.7 0-1.500-.5-1.800-1.400-.7-1.900-.8-4.600-1.300-6.500-.4-1.500-.9-2.500-.9-4z" fill="var(--teal-ink)"/></svg>
+        <span>[Dental Clinic Name]<small>Dental care</small></span>
+      </a>
+      <ul class="links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#team">Our Team</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a class="btn btn-primary" href="#booking">Book an Appointment</a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path id="menuIcon" d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </nav>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="wrap">
+      <ul>
+        <li><a class="l" href="#home">Home</a></li>
+        <li><a class="l" href="#about">About Us</a></li>
+        <li><a class="l" href="#services">Services</a></li>
+        <li><a class="l" href="#team">Our Team</a></li>
+        <li><a class="l" href="#testimonials">Testimonials</a></li>
+        <li><a class="l" href="#contact">Contact</a></li>
+      </ul>
+      <a class="btn btn-primary" style="width:100%" href="#booking">Book an Appointment</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home" aria-labelledby="h-hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">[Dental Clinic Name] · [City, Country]</p>
+      <h1 id="h-hero">Your Healthier Smile <em>Starts Here.</em></h1>
+      <p class="lede">Personalized dental care in a welcoming environment. From routine checkups to smile transformations, we're here to help you feel confident about your smile.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#booking">Book an Appointment</a>
+        <a class="btn btn-ghost" href="#services">Explore Our Services</a>
+      </div>
+      <p class="trust"><i></i>Comfortable Care. Confident Smiles.</p>
+    </div>
+    <figure class="photo tall" style="margin:0">
+      <svg class="art" viewBox="0 0 400 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <circle cx="300" cy="120" r="140" fill="var(--surface)" opacity=".45"/>
+        <circle cx="90" cy="360" r="120" fill="var(--surface)" opacity=".35"/>
+        <path d="M130 170c0-34 26-54 56-54 20 0 33 8 14 8s-6-8 14-8c30 0 56 20 56 54 0 26-8 42-15 67-8 32-10 77-22 108-5 14-18 22-30 22-13 0-21-10-26-27-5-20-8-44-14-44s-9 24-14 44c-5 17-13 27-26 27-12 0-25-8-30-22-12-31-14-76-22-108-7-25-15-41-15-67z" fill="var(--surface)" opacity=".8" transform="translate(-10 -20) scale(1.08)"/>
+      </svg>
+      <figcaption class="ph-tag"><b>Photo placeholder.</b> Replace with a natural photo of your dentist with a patient.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="band" id="services" aria-labelledby="h-services">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Services</p>
+      <h2 id="h-services">Care for every stage of your smile</h2>
+      <p class="lede">Four areas of care, explained plainly. Confirm with the clinic which treatments are available.</p>
+    </div>
+    <div class="cards4">
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.500-3 8.200-7 10-4-1.800-7-5.500-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>General Dentistry</h3>
+        <p>Regular care that keeps small concerns from becoming bigger ones.</p>
+        <ul><li>Routine dental checkups</li><li>Professional teeth cleaning</li><li>Preventive dental care</li></ul>
+        <a class="more" href="#booking" data-service="General Dentistry">Learn More <span aria-hidden="true">→</span></a>
+      </article>
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.800 4.800L19 9.500l-4.200 3 1.600 5.200L12 14.800 7.600 17.700l1.600-5.200-4.200-3 5.200-1.700z"/></svg></div>
+        <h3>Cosmetic Dentistry</h3>
+        <p>Gentle options to refresh the look of your smile, tailored to you.</p>
+        <ul><li>Professional teeth whitening</li><li>Smile enhancement</li><li>Cosmetic dental consultations</li></ul>
+        <a class="more" href="#booking" data-service="Cosmetic Dentistry">Learn More <span aria-hidden="true">→</span></a>
+      </article>
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8c0-2.500 2-4 4-4 1.200 0 2 .6 3 .6S13.800 4 15 4c2 0 4 1.500 4 4 0 2-.8 3.500-1.200 5.500L17 19c-.2 1-1 1.500-1.800 1.500s-1.400-.6-1.700-1.600L13 16h-2l-.5 2.900c-.3 1-.9 1.600-1.700 1.600S7.200 20 7 19l-.8-5.500C5.800 11.500 5 10 5 8z"/></svg></div>
+        <h3>Restorative Dentistry</h3>
+        <p>Repairs that bring back comfort and function to damaged teeth.</p>
+        <ul><li>Dental crowns</li><li>Tooth-colored fillings</li><li>Repair of damaged teeth</li></ul>
+        <a class="more" href="#booking" data-service="Restorative Dentistry">Learn More <span aria-hidden="true">→</span></a>
+      </article>
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h18M3 15h18"/><rect x="4" y="7" width="4" height="10" rx="1.200"/><rect x="10" y="7" width="4" height="10" rx="1.200"/><rect x="16" y="7" width="4" height="10" rx="1.200"/></svg></div>
+        <h3>Orthodontics</h3>
+        <p>Options to help your teeth line up, discussed at a pace that suits you.</p>
+        <ul><li>Traditional braces</li><li>Clear aligners</li><li>Teeth alignment consultations</li></ul>
+        <a class="more" href="#booking" data-service="Orthodontics">Learn More <span aria-hidden="true">→</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="about" aria-labelledby="h-about">
+  <div class="wrap split">
+    <figure class="photo wide" style="margin:0">
+      <svg class="art" viewBox="0 0 500 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <rect x="40" y="250" width="420" height="14" rx="7" fill="var(--surface)" opacity=".6"/>
+        <rect x="90" y="120" width="120" height="130" rx="14" fill="var(--surface)" opacity=".55"/>
+        <rect x="250" y="90" width="160" height="160" rx="80" fill="var(--surface)" opacity=".4"/>
+      </svg>
+      <figcaption class="ph-tag"><b>Photo placeholder.</b> Replace with a real photo of your clinic's reception or treatment room.</figcaption>
+    </figure>
+    <div class="copy">
+      <p class="eyebrow">About Us</p>
+      <h2 id="h-about">Dental Care That Puts You First.</h2>
+      <p class="lede">We aim to make every visit comfortable. That means taking time to listen, explaining your treatment options clearly, and keeping a clean, calm space where you can relax.</p>
+      <p class="lede">Our approach is personal. We plan care around your needs and help you keep your smile healthy between visits.</p>
+      <div class="note"><b>Clinic details to add:</b> [Clinic history and founding year], [dentist profiles], [qualifications], [years of experience]. Only add information you can verify.</div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="team" aria-labelledby="h-team">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Our Team</p>
+      <h2 id="h-team">Meet Our Dental Team</h2>
+      <p class="lede">Each profile below is a template. Add the real name, verified qualifications and a short biography for every team member.</p>
+    </div>
+    <div class="team">
+      <article class="person">
+        <div class="avatar" role="img" aria-label="Portrait placeholder"><svg viewBox="0 0 64 64" fill="currentColor" aria-hidden="true"><circle cx="32" cy="22" r="12"/><path d="M8 60c1-15 11-22 24-22s23 7 24 22z"/></svg></div>
+        <div class="body">
+          <h3>[Dentist Name]</h3>
+          <p class="ph">[Professional title]</p>
+          <dl>
+            <div><dt>Qualifications</dt><dd class="ph">[Verified degrees and licences]</dd></div>
+            <div><dt>Specialization</dt><dd class="ph">[Area of focus]</dd></div>
+            <div><dt>About</dt><dd class="ph">[Short biography, 2 to 3 sentences]</dd></div>
+          </dl>
+        </div>
+      </article>
+      <article class="person">
+        <div class="avatar" role="img" aria-label="Portrait placeholder"><svg viewBox="0 0 64 64" fill="currentColor" aria-hidden="true"><circle cx="32" cy="22" r="12"/><path d="M8 60c1-15 11-22 24-22s23 7 24 22z"/></svg></div>
+        <div class="body">
+          <h3>[Dentist Name]</h3>
+          <p class="ph">[Professional title]</p>
+          <dl>
+            <div><dt>Qualifications</dt><dd class="ph">[Verified degrees and licences]</dd></div>
+            <div><dt>Specialization</dt><dd class="ph">[Area of focus]</dd></div>
+            <div><dt>About</dt><dd class="ph">[Short biography, 2 to 3 sentences]</dd></div>
+          </dl>
+        </div>
+      </article>
+      <article class="person">
+        <div class="avatar" role="img" aria-label="Portrait placeholder"><svg viewBox="0 0 64 64" fill="currentColor" aria-hidden="true"><circle cx="32" cy="22" r="12"/><path d="M8 60c1-15 11-22 24-22s23 7 24 22z"/></svg></div>
+        <div class="body">
+          <h3>[Team Member Name]</h3>
+          <p class="ph">[Hygienist, assistant or coordinator]</p>
+          <dl>
+            <div><dt>Qualifications</dt><dd class="ph">[Verified training]</dd></div>
+            <div><dt>Specialization</dt><dd class="ph">[Role or focus]</dd></div>
+            <div><dt>About</dt><dd class="ph">[Short biography, 2 to 3 sentences]</dd></div>
+          </dl>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials" aria-labelledby="h-test">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Testimonials</p>
+      <h2 id="h-test">What patients say</h2>
+      <p class="lede">These cards are placeholders. Replace them with genuine patient feedback, shared with permission.</p>
+    </div>
+    <div class="quotes">
+      <figure class="quote" style="margin:0">
+        <span class="badge">Placeholder</span>
+        <div class="stars" aria-label="Rating placeholder"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.500l2.600 5.400 5.900.8-4.300 4.100 1 5.800L10 14.800 4.800 17.600l1-5.800L1.500 7.700l5.900-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.500l2.600 5.400 5.900.8-4.300 4.100 1 5.800L10 14.800 4.800 17.600l1-5.800L1.500 7.700l5.900-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.500l2.600 5.400 5.900.8-4.300 4.100 1 5.800L10 14.800 4.800 17.600l1-5.800L1.500 7.700l5.900-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.500l2.600 5.400 5.900.8-4.300 4.100 1 5.800L10 14.800 4.800 17.600l1-5.800L1.500 7.700l5.900-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.500l2.600 5.400 5.900.8-4.300 4.100 1 5.800L10 14.800 4.800 17.600l1-5.800L1.500 7.700l5.900-.8z"/></svg></div>
+        <blockquote>[Patient feedback about their first visit goes here.]</blockquote>
+        <figcaption><cite>[Patient name or initials], [Treatment received]</cite></figcaption>
+      </figure>
+      <figure class="quote" style="margin:0">
+        <span class="badge">Placeholder</span>
+        <div class="stars" aria-label="Rating placeholder"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.500l2.600 5.400 5.900.8-4.300 4.100 1 5.800L10 14.800 4.800 17.600l1-5.800L1.500 7.700l5.900-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.500l2.600 5.400 5.900.8-4.300 4.100 1 5.800L10 14.800 4.800 17.600l1-5.800L1.500 7.700l5.900-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.500l2.600 5.400 5.900.8-4.300 4.100 1 5.800L10 14.800 4.800 17.600l1-5.800L1.500 7.700l5.900-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.500l2.600 5.400 5.900.8-4.300 4.100 1 5.800L10 14.800 4.800 17.600l1-5.800L1.500 7.700l5.900-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.500l2.600 5.400 5.900.8-4.300 4.100 1 5.800L10 14.800 4.800 17.600l1-5.800L1.500 7.700l5.900-.8z"/></svg></div>
+        <blockquote>[Patient feedback about communication and comfort goes here.]</blockquote>
+        <figcaption><cite>[Patient name or initials], [Treatment received]</cite></figcaption>
+      </figure>
+      <figure class="quote" style="margin:0">
+        <span class="badge">Placeholder</span>
+        <div class="stars" aria-label="Rating placeholder"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.500l2.600 5.400 5.900.8-4.300 4.100 1 5.800L10 14.800 4.800 17.600l1-5.800L1.500 7.700l5.900-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.500l2.600 5.400 5.900.8-4.300 4.100 1 5.800L10 14.800 4.800 17.600l1-5.800L1.500 7.700l5.900-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.500l2.600 5.400 5.900.8-4.300 4.100 1 5.800L10 14.800 4.800 17.600l1-5.800L1.500 7.700l5.900-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.500l2.600 5.400 5.900.8-4.300 4.100 1 5.800L10 14.800 4.800 17.600l1-5.800L1.500 7.700l5.900-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.500l2.600 5.400 5.900.8-4.300 4.100 1 5.800L10 14.800 4.800 17.600l1-5.800L1.500 7.700l5.900-.8z"/></svg></div>
+        <blockquote>[Patient feedback about the appointment process goes here.]</blockquote>
+        <figcaption><cite>[Patient name or initials], [Treatment received]</cite></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="band" aria-labelledby="h-why">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Why Choose Us</p>
+      <h2 id="h-why">Dental visits that feel straightforward</h2>
+    </div>
+    <div class="why">
+      <div><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4h6M10 4v3M14 4v3M6 7h12v13H6z"/><path d="M9 12h6M9 16h4"/></svg></span><h3>Personalized treatment plans</h3><p>Care that is planned around your teeth, your goals and your schedule.</p></div>
+      <div><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg></span><h3>Clear communication</h3><p>Your options are explained in plain language so you can decide with confidence.</p></div>
+      <div><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9H3z"/><path d="M10 20v-6h4v6"/></svg></span><h3>A welcoming environment</h3><p>A calm, comfortable setting designed to put you at ease.</p></div>
+      <div><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></span><h3>Modern care techniques</h3><p>[Describe the techniques and equipment your clinic actually uses.]</p></div>
+      <div><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.500-3 8.200-7 10-4-1.800-7-5.500-7-10V6z"/></svg></span><h3>A focus on prevention</h3><p>Regular checkups and cleanings help protect your smile over the long term.</p></div>
+      <div><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M8 3v4M16 3v4M4 10h16"/></svg></span><h3>Convenient requests</h3><p>Send an appointment request online in about a minute.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="booking" aria-labelledby="h-book">
+  <div class="wrap">
+    <div class="book">
+      <div class="copy">
+        <p class="eyebrow">Appointments</p>
+        <h2 id="h-book">Ready to Take Care of Your Smile?</h2>
+        <p class="lede">Tell us when suits you and what you need. The clinic will contact you to confirm a time.</p>
+        <span class="demo">Demo form · no booking system connected</span>
+        <p class="lede" style="font-size:.92rem">This form checks your entries but does not send them anywhere yet. Connect it to the clinic's booking service or email before launch.</p>
+      </div>
+      <form class="panel" id="bookForm" novalidate>
+        <div class="field">
+          <label for="fName">Full name <span class="req" aria-hidden="true">*</span></label>
+          <input id="fName" name="name" type="text" autocomplete="name" required aria-describedby="eName">
+          <div class="err" id="eName" role="alert"></div>
+        </div>
+        <div class="field">
+          <label for="fPhone">Phone number <span class="req" aria-hidden="true">*</span></label>
+          <input id="fPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required aria-describedby="ePhone">
+          <div class="err" id="ePhone" role="alert"></div>
+        </div>
+        <div class="field full">
+          <label for="fEmail">Email address <span class="opt">(optional)</span></label>
+          <input id="fEmail" name="email" type="email" autocomplete="email" aria-describedby="eEmail">
+          <div class="err" id="eEmail" role="alert"></div>
+        </div>
+        <div class="field">
+          <label for="fDate">Preferred date <span class="req" aria-hidden="true">*</span></label>
+          <input id="fDate" name="date" type="date" required aria-describedby="eDate">
+          <div class="err" id="eDate" role="alert"></div>
+        </div>
+        <div class="field">
+          <label for="fTime">Preferred time <span class="req" aria-hidden="true">*</span></label>
+          <select id="fTime" name="time" required aria-describedby="eTime">
+            <option value="">Select a time</option>
+            <option>Morning</option>
+            <option>Midday</option>
+            <option>Afternoon</option>
+            <option>Evening</option>
+          </select>
+          <div class="err" id="eTime" role="alert"></div>
+        </div>
+        <div class="field full">
+          <label for="fService">Dental service required <span class="req" aria-hidden="true">*</span></label>
+          <select id="fService" name="service" required aria-describedby="eService">
+            <option value="">Select a service</option>
+            <option>General Dentistry</option>
+            <option>Cosmetic Dentistry</option>
+            <option>Restorative Dentistry</option>
+            <option>Orthodontics</option>
+            <option>Not sure yet</option>
+          </select>
+          <div class="err" id="eService" role="alert"></div>
+        </div>
+        <div class="field full">
+          <label for="fMsg">Message <span class="opt">(optional)</span></label>
+          <textarea id="fMsg" name="message"></textarea>
+        </div>
+        <div class="field full"><button class="btn btn-primary" type="submit">Request an Appointment</button></div>
+        <div class="status" id="formStatus" role="status" hidden></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="faq" aria-labelledby="h-faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">FAQ</p>
+      <h2 id="h-faq">Frequently asked questions</h2>
+    </div>
+    <div class="faq">
+      <details><summary>How often should I visit a dentist?</summary><p>Many people have a checkup and cleaning every six months, but the right schedule depends on your oral health. Your dentist can recommend what suits you.</p></details>
+      <details><summary>What should I expect during my first visit?</summary><p>You will usually be asked about your health and dental history, then have an examination. Your dentist will explain what they find and discuss any options. [Add clinic-specific details, such as forms to bring or visit length.]</p></details>
+      <details><summary>Do you offer teeth whitening?</summary><p>[Confirm whether the clinic offers whitening and which methods.] If you are interested, mention it in your appointment request and the team can talk it through with you.</p></details>
+      <details><summary>How can I request an appointment?</summary><p>Use the form on this page, or contact the clinic by phone or email using the details in the contact section. The clinic will confirm your time with you.</p></details>
+      <details><summary>How can I contact the clinic about treatment costs?</summary><p>Costs depend on the treatment you need. [Add the clinic's pricing or payment policy here.] You can ask for details when you request an appointment or contact the clinic directly.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="contact" aria-labelledby="h-contact">
+  <div class="wrap">
+    <div class="contact">
+      <div class="info">
+        <p class="eyebrow">Contact</p>
+        <h2 id="h-contact">Visit or get in touch</h2>
+        <dl>
+          <div><dt>Address</dt><dd>[Clinic street address], [City, Country]</dd></div>
+          <div><dt>Phone</dt><dd>[Phone Number]</dd></div>
+          <div><dt>Email</dt><dd>[Email Address]</dd></div>
+          <div><dt>Opening hours</dt><dd>[Days and hours]</dd></div>
+        </dl>
+      </div>
+      <div class="map" role="img" aria-label="Map placeholder"><div><b>Map placeholder</b><br>Embed your Google Maps location here once the address is confirmed.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" aria-labelledby="h-final">
+  <div class="wrap final">
+    <h2 id="h-final">Let's Make Your Next Visit a Positive One.</h2>
+    <p class="lede">Send a request and the clinic will be in touch to confirm your appointment.</p>
+    <a class="btn btn-primary" href="#booking">Book an Appointment</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="logo" href="#home" style="color:var(--ink)"><span>[Dental Clinic Name]<small>Dental care</small></span></a>
+        <p style="margin-top:.8rem;max-width:34ch">Personalized dental care in [City, Country].</p>
+      </div>
+      <div>
+        <h3>Quick links</h3>
+        <ul><li><a href="#about">About Us</a></li><li><a href="#services">Services</a></li><li><a href="#team">Our Team</a></li><li><a href="#faq">FAQ</a></li><li><a href="#booking">Book an Appointment</a></li></ul>
+      </div>
+      <div>
+        <h3>Follow</h3>
+        <ul><li>[Facebook page URL]</li><li>[Instagram profile URL]</li><li>[Other social link]</li></ul>
+      </div>
+    </div>
+    <div class="legal">
+      <details><summary>Privacy policy</summary><p>[Add the clinic's privacy policy here, including how appointment request details are stored and used.]</p></details>
+      <details><summary>Website terms and policies</summary><p>[Add website terms, cookie policy and any other policies required in your region.]</p></details>
+      <p>© <span id="yr"></span> [Dental Clinic Name]. All rights reserved. Information on this site is general and does not replace advice from a dentist.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var $=function(s){return document.querySelector(s)};
+  document.getElementById("yr").textContent=new Date().getFullYear();
+
+  // mobile menu
+  var btn=$("#menuBtn"),menu=$("#mobileMenu"),icon=$("#menuIcon");
+  function setMenu(open){
+    menu.classList.toggle("open",open);
+    btn.setAttribute("aria-expanded",String(open));
+    btn.setAttribute("aria-label",open?"Close menu":"Open menu");
+    icon.setAttribute("d",open?"M6 6l12 12M18 6L6 18":"M4 7h16M4 12h16M4 17h16");
+  }
+  btn.addEventListener("click",function(){setMenu(!menu.classList.contains("open"))});
+  menu.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){setMenu(false)})});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")setMenu(false)});
+
+  // service "Learn More" preselects the service
+  document.querySelectorAll("[data-service]").forEach(function(a){
+    a.addEventListener("click",function(){$("#fService").value=a.getAttribute("data-service")});
+  });
+
+  // date minimum = today
+  var d=new Date(),pad=function(n){return String(n).padStart(2,"0")};
+  $("#fDate").min=d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
+
+  // form validation
+  var form=$("#bookForm"),status=$("#formStatus");
+  function setErr(id,eid,msg){
+    var f=$(id),e=$(eid);
+    e.textContent=msg;
+    f.closest(".field").classList.toggle("bad",!!msg);
+    f.setAttribute("aria-invalid",msg?"true":"false");
+    return !msg;
+  }
+  form.addEventListener("submit",function(ev){
+    ev.preventDefault();
+    var name=$("#fName").value.trim(),phone=$("#fPhone").value.trim(),email=$("#fEmail").value.trim();
+    var ok=[
+      setErr("#fName","#eName",name?"":"Enter your full name."),
+      setErr("#fPhone","#ePhone",/^[+()\d\s\-]{7,}$/.test(phone)?"":"Enter a phone number with at least 7 digits."),
+      setErr("#fEmail","#eEmail",!email||/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)?"":"Enter a valid email address, or leave this blank."),
+      setErr("#fDate","#eDate",$("#fDate").value&&$("#fDate").value>=$("#fDate").min?"":"Choose a date from today onward."),
+      setErr("#fTime","#eTime",$("#fTime").value?"":"Select a preferred time."),
+      setErr("#fService","#eService",$("#fService").value?"":"Select a dental service.")
+    ].every(Boolean);
+    status.hidden=false;
+    if(!ok){
+      status.className="status fail";
+      status.textContent="Please fix the highlighted fields and try again.";
+      var bad=form.querySelector(".bad input,.bad select");if(bad)bad.focus();
+      return;
+    }
+    status.className="status ok";
+    status.textContent="Demo only: your details look complete, but this form is not connected to a booking system, so no appointment has been requested. Please contact the clinic directly.";
+  });
+})();
+</script>
+
+</body></html>
